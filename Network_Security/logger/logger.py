@@ -28,9 +28,9 @@ logging.basicConfig(
 # )
 
 
-if __name__=="__main__":
+# if __name__=="__main__":
     # print(f"log file : {LOG_FILE}")
     # print(logs_path)
     # print(LOG_FILE_PATH)
     # logging.info("getting started")
-    pass
+    # pass
