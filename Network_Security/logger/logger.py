@@ -12,8 +12,25 @@ os.makedirs(logs_path,exist_ok=True)
 LOG_FILE_PATH=os.path.join(logs_path,LOG_FILE)
 
 
+format="[%(asctime)s] (linenumber - %(lineno)d) -- %(levelname)s -> %(message)s"
+
+logging.basicConfig(
+    filename=LOG_FILE_PATH,
+    format=format,
+    level=logging.INFO,
+)
+
+
+
+# logging.basicConfig(
+#     filename=LOG_FILE_PATH,
+#     level=logging.INFO
+# )
+
 
 if __name__=="__main__":
-    print(f"log file : {LOG_FILE}")
-    print(logs_path)
-    print(LOG_FILE_PATH)
+    # print(f"log file : {LOG_FILE}")
+    # print(logs_path)
+    # print(LOG_FILE_PATH)
+    # logging.info("getting started")
+    pass
