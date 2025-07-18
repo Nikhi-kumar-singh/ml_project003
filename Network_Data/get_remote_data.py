@@ -1,19 +1,26 @@
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
-user_name="nikhilkumarsingh5872"
-password="mVxxZZ744EMlU5a8"
+load_dotenv()
 
-uri = f"mongodb+srv://{user_name}:{password}@cluster0.n1vzevj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+user = os.getenv("MONGO_ATLAS_USER_NAME")
+password = os.getenv("MONGO_ATLAS_PASSWORD")
+cluster = os.getenv("MONGO_ATLAS_CLUSTER_NAME")
+env_uri=os.getenv("MONGO_DB_URL")
 
-# print(f"uri : {uri}")
+uri = f"mongodb+srv://{user}:{password}@{cluster}.n1vzevj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+client1 = MongoClient(env_uri)
+client2 = MongoClient(uri)
 
-# Send a ping to confirm a successful connection
+
+# Test connection
 try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
+    client1.admin.command('ping')
+    print("uri1 Connected successfully!")
+    client2.admin.command('ping')
+    print("uri2 Connected successfully!")
 except Exception as e:
-    print(e)
+    print("Connection failed:", e)
