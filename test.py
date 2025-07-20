@@ -1,16 +1,10 @@
-from pymongo import MongoClient
+import pandas as pd
+import numpy as np
+from datetime import datetime
 
-client=MongoClient("localhost",27017)
+# FILE_PATH="Network_Data/phisingData.csv"
 
-db=client.college
+# df=pd.read_csv(FILE_PATH)
+# print(df.columns)
 
-students=db.students
-
-students.insert_one({
-    "name":"manish modanwal",
-    "age":23,
-    "degree":"B.Tech"    
-})
-
-for student in students.find():
-    print(student)
+# print(datetime.now())
