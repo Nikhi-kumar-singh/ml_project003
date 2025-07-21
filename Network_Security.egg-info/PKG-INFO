@@ -8,8 +8,10 @@ Requires-Dist: numpy
 Requires-Dist: scikit-learn
 Requires-Dist: python-dotenv
 Requires-Dist: pymongo
+Requires-Dist: pymongo[srv]==3.6
 Requires-Dist: setuptools
 Requires-Dist: certifi
+Requires-Dist: dotenv
 Dynamic: author
 Dynamic: author-email
 Dynamic: requires-dist
