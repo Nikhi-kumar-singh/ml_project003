@@ -78,12 +78,68 @@ class DataIngestionConfig:
             f"  Collection Name     : {self.collection_name}\n"
             f"  Database Name       : {self.database_name}"
         )
+    
+
+
+class DataValidationConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        self.data_validation_dir:str=os.path.join(
+            training_pipeline_config.artifact_dir,
+            training_pipeline.DATA_VALIDATION_DIR_NAME
+        )
+        self.valid_data_dir=os.path.join(
+            self.data_validation_dir,
+            training_pipeline.DATA_VALIDATION_VALID_DIR
+        )
+        self.invalid_data_dir=os.path.join(
+            self.data_validation_dir,
+            training_pipeline.DATA_VALIDATION_INVALID_DIR
+        )
+        self.valid_train_file_path=os.path.join(
+            self.valid_data_dir,
+            training_pipeline.TRAIN_FILE_NAME
+        )
+        self.valid_test_file_path=os.path.join(
+            self.valid_data_dir,
+            training_pipeline.TEST_FILE_NAME
+        )
+        self.invalid_train_file_path=os.path.join(
+            self.invalid_data_dir,
+            training_pipeline.TRAIN_FILE_NAME
+        )
+        self.invalid_test_file_path=os.path.join(
+            self.invalid_data_dir,
+            training_pipeline.TEST_FILE_NAME
+        )
+        self.drift_report_file_path=os.path.join(
+            self.data_validation_dir,
+            training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,
+            training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME
+        )
+
+    def __str__(self):
+        return (
+            f"Data Validation Config:\n"
+            f"Validation Directory: {self.data_validation_dir}\n"
+            f"Valid Data Directory: {self.valid_data_dir}\n"
+            f"Invalid Data Directory: {self.invalid_data_dir}\n"
+            f"Valid Train File: {self.valid_train_file_path}\n"
+            f"Valid Test File: {self.valid_test_file_path}\n"
+            f"Invalid Train File: {self.invalid_train_file_path}\n"
+            f"Invalid Test File: {self.invalid_test_file_path}\n"
+            f"Drift Report File: {self.drift_report_file_path}"
+        )
+
+
+
 
  
 if __name__=="__main__":
-    obj=DataIngestionConfig(TrainingPipelineConfig())
-    print(obj)
+    # obj=DataIngestionConfig(TrainingPipelineConfig())
+    # print(obj)
 
+    obj=DataValidationConfig(TrainingPipelineConfig())
+    print(obj)
 
 
 
