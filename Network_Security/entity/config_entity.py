@@ -130,16 +130,35 @@ class DataValidationConfig:
             f"Drift Report File: {self.drift_report_file_path}"
         )
 
+ 
 
 
+class DataTransformationConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        self.data_transformation_dir:str=os.path.join(
+            training_pipeline_config.artifact_dir,
+            training_pipeline.DATA_INGESTION_TRAIN_TEST_SPLIT
+        )
+        self.transformed_train_file_path=os.path.join(
+            self.data_transformation_dir,
+            training_pipeline.DATA_TRANSFORMATION
+        )
+        self.transformed_test_file_path=os.path.join(
+            self.data_transformation_dir,
+            training_pipeline
+        )
+        self.transformed_object_file_path=os.path.join(
+            self.data_transformation_dir,
+            training_pipeline
+        )
 
  
 if __name__=="__main__":
     # obj=DataIngestionConfig(TrainingPipelineConfig())
     # print(obj)
 
-    obj=DataValidationConfig(TrainingPipelineConfig())
-    print(obj)
+    # obj=DataValidationConfig(TrainingPipelineConfig())
+    # print(obj)
 
 
 

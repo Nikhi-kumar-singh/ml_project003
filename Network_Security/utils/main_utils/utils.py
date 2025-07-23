@@ -19,6 +19,8 @@ def read_yaml_file(file_path:str) -> dict :
         raise NetworkSecurityException(e,sys)
     
 
+
+
 def write_yaml_file(file_path:str,content:object,replace:bool=False):
     try:
         if replace:
@@ -28,6 +30,34 @@ def write_yaml_file(file_path:str,content:object,replace:bool=False):
 
         with open(file_path,"w") as yaml_file:
             yaml.dump(content,yaml_file)
+
+    except Exception as e:
+        raise NetworkSecurityException(e,sys)
+    
+
+
+
+def save_numpy_array(file_path:str,array:np.array):
+    try:
+        dir_path=os.path.dirname(file_path)
+        os.makedirs(dir_path,exist_ok=True)
+
+        with open(file_path,"wb") as array_file:
+            np.save(array_file,array)
+
+    except Exception as e:
+        raise NetworkSecurityException(e,sys)
+    
+
+
+
+def save_object(file_path:str,obj:object):
+    try:
+        dir_path=os.path.dirname(file_path)
+        os.makedirs(dir_path)
+        
+        with open(file_path,"wb") as obj_file:
+            pickle.dump(obj,obj_file)
 
     except Exception as e:
         raise NetworkSecurityException(e,sys)

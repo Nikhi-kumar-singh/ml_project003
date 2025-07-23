@@ -58,6 +58,7 @@ class DataValidation:
     def validate_number_of_columns(self,dataframe:pd.DataFrame):
         try:
             number_of_columns=len(self._schema_config)
+            # logging.info(f"schema config file : {self._schema_config}")
 
             if len(dataframe.columns)==number_of_columns:
                 return True
@@ -66,6 +67,9 @@ class DataValidation:
 
         except Exception as e:
             raise NetworkSecurityException(e,sys)
+        
+
+
 
     def detect_dataset_drift(self,base_df,current_df,threshold=0.5):
         try:
