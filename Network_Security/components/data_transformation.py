@@ -61,13 +61,17 @@ class DataTransformation:
 
     
 
-    def get_data_transformer_object()->Pipeline:
+    def get_data_transformer_object(self):
         try:
             params=DATA_TRANSFORMATION_IMPUTER_PARAMS
+            
+            logging.info(f"type of the params : {type(params)}")
+            logging.info(f"imputer paramas : {params}")
+
             imputer=KNNImputer(**params)
-            processor=Pipeline({
+            processor=Pipeline([
                 ("knn_imputer",imputer)
-            })
+            ])
             return processor
 
         except Exception as e:
@@ -132,17 +136,17 @@ class DataTransformation:
 
 
             save_numpy_array_data(
-                self.data_transformation_artifact.transformed_train_file_path,
+                self.data_transformation_config.transformed_train_file_path,
                 train_arr
             )
 
             save_numpy_array_data(
-                self.data_transformation_artifact.transformed_test_file_path,
+                self.data_transformation_config.transformed_test_file_path,
                 test_arr
             )
 
             save_object(
-                self.data_transformation_artifact.transformed_object_file_path,
+                self.data_transformation_config.transformed_object_file_path,
                 preprocessor_object
             )
 

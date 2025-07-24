@@ -39,7 +39,7 @@ DATA_TRANSFORMATION_DIR_NAME="data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR="transformed"
 DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR="transformed_object"
 DATA_TRANSFORMATION_IMPUTER_PARAMS:dict={
-    "missing values":np.nan,
+    "missing_values":np.nan,
     "n_neighbors":3,
     "weights":"uniform"
 }

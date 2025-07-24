@@ -55,34 +55,43 @@ class NetworkDataExtract():
             raise NetworkSecurityException(e,sys)
         
 
-    def delete_ccollection_from_remote_server(self,database,collection):
+    def drop_collection(self,database,collection):
+        try:
+            self.database=database
+            self.collection=collection
 
-        self.database=database
-        self.collection=collection
+            self.mongo_client=pymongo.MongoClient(MONGO_DB_URL)
+            self.database=self.mongo_client[self.database]
+            self.collection=self.database[self.collection]
+            self.collection.drop()
 
-        self.mongo_client=pymongo.Mongo_Client(MONGO_DB_URL)
-        self.database=self.mongo_client[self.database]
-        self.collection=self.database[self.collection]
-        self.collection.delete_all()
-
-
+        except Exception as e:
+            raise NetworkSecurityException(e,sys)
 
 
 
 
 
 if __name__=="__main__":
-    FILE_PATH="E:/GitHubFIles/ML_project003/Network_Data/phisingData.csv"
-    DATABASE="NIKHIL"
-    COLLECTION="NETWORK_DATA"
-    obj=NetworkDataExtract()
-    RECORDS=obj.csv_to_json_convertor(FILE_PATH)
-    print(RECORDS)
-    number_of_records=obj.insert_data_into_mongo(
-        records=RECORDS,
-        database=DATABASE,
-        collection=COLLECTION
-    )
+    try:
+        FILE_PATH="E:/GitHubFIles/ML_project003/Network_Data/phisingData.csv"
+        DATABASE="NIKHIL"
+        COLLECTION="NETWORK_DATA"
+        obj=NetworkDataExtract()
+        obj.drop_collection(
+            DATABASE,
+            COLLECTION
+        )
+        RECORDS=obj.csv_to_json_convertor(FILE_PATH)
+        # print(RECORDS)
+        number_of_records=obj.insert_data_into_mongo(
+            records=RECORDS,
+            database=DATABASE,
+            collection=COLLECTION
+        )
 
-    print(f"number of records : {number_of_records}")
-
+        print(f"number of records : {number_of_records}")
+    
+    except Exception as e:
+        raise NetworkSecurityException(e,sys)
+    
