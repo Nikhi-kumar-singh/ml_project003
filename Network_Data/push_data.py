@@ -29,7 +29,7 @@ class NetworkDataExtract():
         try:
             df=pd.read_csv(file_path)
             df.reset_index(drop=True,inplace=True)
-            records=list(json.loads(df.T.to_json(orient="records")))
+            records=list(json.loads(df.to_json(orient="records")))
             return records
 
         except Exception as e:
@@ -53,7 +53,17 @@ class NetworkDataExtract():
 
         except Exception as e:
             raise NetworkSecurityException(e,sys)
+        
 
+    def delete_ccollection_from_remote_server(self,database,collection):
+
+        self.database=database
+        self.collection=collection
+
+        self.mongo_client=pymongo.Mongo_Client(MONGO_DB_URL)
+        self.database=self.mongo_client[self.database]
+        self.collection=self.database[self.collection]
+        self.collection.delete_all()
 
 
 
