@@ -72,7 +72,7 @@ def load_numpy_array_data(file_path):
 def save_object(file_path:str,obj:object):
     try:
         dir_path=os.path.dirname(file_path)
-        os.makedirs(dir_path)
+        os.makedirs(dir_path,exist_ok=True)
         
         with open(file_path,"wb") as obj_file:
             pickle.dump(obj,obj_file)
@@ -141,7 +141,7 @@ def evaluate_models(
 
             report[list(models.keys())[i]]={
                 "score":test_model_score,
-                "params":param
+                "model":processor.best_estimator_
             }
 
         

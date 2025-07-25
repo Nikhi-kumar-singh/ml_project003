@@ -103,13 +103,23 @@ class ModelTrainer:
             params=params
         )
 
-        best_model_score=max(model_report.values())
-        
-        best_model_name=list(model_report.values())[
-            list(model_report.values()).index(best_model_score)
-        ]
+        best_model_score=0
+        best_model_name=""
+        best_model={}
 
-        best_model=models[best_model_name]
+        for model_name,model_data in model_report.items():
+            model_score=model_data["score"]
+
+            if model_score > best_model_score : 
+                best_model_name=model_name
+                best_model_score=model_score
+                best_model=model_data["model"]
+
+        logging.info(
+            f"best model name : {best_model_name}",
+            f"best score : {best_model_score}"
+        )
+
 
         y_train_pred = best_model.predict(x_train)
 
@@ -144,8 +154,13 @@ class ModelTrainer:
             obj=network_model_obj
         )
 
+    #     class ModelTrainerArtifact:
+    # train_model_file_path:str
+    # train_metric_artifact: ClassificationMetricArtifact
+    # test_metric_artifart: ClassificationMetricArtifact
+
         model_trainer_artifact_obj=ModelTrainerArtifact(
-            trained_model_file_path=self.model_trainer_config.trained_model_file_path,
+            train_model_file_path=self.model_trainer_config.trained_model_file_path,
             train_metric_artifact=classification_train_metric,
             test_metric_artifact=classification_test_matric
         )
