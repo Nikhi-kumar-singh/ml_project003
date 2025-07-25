@@ -9,5 +9,6 @@ dotenv
 PyYAML
 dill
 pipdeptree
+mlflow
 
 # -e .

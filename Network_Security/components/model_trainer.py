@@ -1,4 +1,6 @@
 import os,sys
+import warnings
+warnings.filterwarnings("ignore",category=UserWarning)
 
 from Network_Security.exception.exception import NetworkSecurityException
 from Network_Security.logger.logger import logging
@@ -21,7 +23,6 @@ from Network_Security.utils.main_utils.utils import (
     load_object,
     evaluate_models
 )
-from Network_Security.utils.ml_utils.model.estimator import NetworkModel
 
 from Network_Security.utils.ml_utils.metric.classification_metric import get_classification_score   
 
@@ -34,7 +35,7 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     RandomForestClassifier 
 )
-
+import mlflow
 
 
 class ModelTrainer:
@@ -51,6 +52,22 @@ class ModelTrainer:
             raise NetworkSecurityException(e,sys)
         
         
+
+    def track_mlflow(
+            self,
+            best_model,
+            classification_metric
+    ):
+        with mlflow.start_run():
+            f1_score=classification_metric.f1_score
+            precision_score=classification_metric.precision_score
+            recall_score=classification_metric.recall_score
+
+            mlflow.log_metric("f1_score",f1_score)
+            mlflow.log_metric("precision_score",precision_score)
+            mlflow.log_metric("recall_score",recall_score)
+            mlflow.sklearn.log_model(sk_model=best_model,name="model")
+
 
 
     def train_model(
@@ -105,6 +122,7 @@ class ModelTrainer:
 
         best_model_score=0
         best_model_name=""
+        best_model_estimator={}
         best_model={}
 
         for model_name,model_data in model_report.items():
@@ -113,26 +131,38 @@ class ModelTrainer:
             if model_score > best_model_score : 
                 best_model_name=model_name
                 best_model_score=model_score
-                best_model=model_data["model"]
+                best_model_estimator=model_data["model"]
 
         logging.info(
-            f"best model name : {best_model_name}",
+            f"best model name : {best_model_name}"
             f"best score : {best_model_score}"
         )
 
+        best_model=models[best_model_name]
 
-        y_train_pred = best_model.predict(x_train)
+        best_model.fit(x_train,y_train)
+        y_train_pred = best_model_estimator.predict(x_train)
 
         classification_train_metric=get_classification_score(
             y_true =   y_train,
             y_pred = y_train_pred
         )
 
-        y_test_pred=best_model.predict(x_test)
+        self.track_mlflow(
+            best_model_estimator,
+            classification_train_metric
+        )
 
-        classification_test_matric=get_classification_score(
+        y_test_pred=best_model_estimator.predict(x_test)
+
+        classification_test_metric=get_classification_score(
             y_true =y_test,
             y_pred=y_test_pred
+        )
+
+        self.track_mlflow(
+            best_model_estimator,
+            classification_test_metric
         )
 
         preprocessor = load_object(
@@ -154,15 +184,11 @@ class ModelTrainer:
             obj=network_model_obj
         )
 
-    #     class ModelTrainerArtifact:
-    # train_model_file_path:str
-    # train_metric_artifact: ClassificationMetricArtifact
-    # test_metric_artifart: ClassificationMetricArtifact
 
         model_trainer_artifact_obj=ModelTrainerArtifact(
             train_model_file_path=self.model_trainer_config.trained_model_file_path,
             train_metric_artifact=classification_train_metric,
-            test_metric_artifact=classification_test_matric
+            test_metric_artifact=classification_test_metric
         )
 
 
@@ -190,9 +216,9 @@ class ModelTrainer:
 
             logging.info(
                 f"shape of the data for training and testing : \n"
-                f"x_train {x_train.shape}",
-                f"x_test : {x_test.shape}",
-                f"y_train : {y_train.shape}",
+                f"x_train {x_train.shape}"
+                f"x_test : {x_test.shape}"
+                f"y_train : {y_train.shape}"
                 f"y_test : {y_test.shape}"
             )
 
