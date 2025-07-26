@@ -150,6 +150,11 @@ class DataTransformation:
                 preprocessor_object
             )
 
+            save_object(
+                file_path="final_model/preprocessor.pkl",
+                obj=preprocessor_object
+            )
+
             data_transformation_artifact_object=DataTransformationArtifact(
                 transformed_train_file_path=self.data_transformation_config.transformed_train_file_path,
                 transformed_test_file_path=self.data_transformation_config.transformed_test_file_path,

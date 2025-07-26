@@ -75,5 +75,10 @@ if __name__=="__main__":
 
         logging.info(f"model trainer artifact object\n  {model_trainer_artifact_object}")
 
+        '''
+        after this step :
+            run in terminal : mlflow ui
+        '''
+
     except Exception as e:
         raise NetworkSecurityException(e,sys)

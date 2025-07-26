@@ -133,6 +133,12 @@ class ModelTrainer:
                 best_model_score=model_score
                 best_model_estimator=model_data["model"]
 
+        save_object(
+            file_path=f"final_model/model.pkl",
+            obj=best_model_estimator
+        )
+    
+
         logging.info(
             f"best model name : {best_model_name}"
             f"best score : {best_model_score}"
