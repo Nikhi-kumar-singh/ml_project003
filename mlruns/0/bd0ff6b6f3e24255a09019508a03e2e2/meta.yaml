@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/GitHubFIles/ML_project003/mlruns/0/bd0ff6b6f3e24255a09019508a03e2e2/artifacts
+end_time: 1753607957759
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bd0ff6b6f3e24255a09019508a03e2e2
+run_name: receptive-ray-110
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753607954592
+status: 3
+tags: []
+user_id: Lenovo

@@ -10,7 +10,9 @@ PyYAML
 dill
 pipdeptree
 mlflow
-fastsapi
+fastapi
 uvicorn
+python-multipart
+
 
 # -e .
