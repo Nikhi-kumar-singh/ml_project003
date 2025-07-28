@@ -63,7 +63,7 @@ ml_project003/
 
 ## 📊 Project Class Diagram
 
-```text
+```bash
                             +----------------------------+
                             |        main.py             |
                             |----------------------------|
