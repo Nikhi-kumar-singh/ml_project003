@@ -64,7 +64,7 @@ ml_project003/
 
 ## 📊 Project Class Diagram
 
-```bash
+```
                             +----------------------------+
                             |        main.py             |
                             |----------------------------|
@@ -101,4 +101,40 @@ ml_project003/
 | DataIngestionArtifact| | DataValidationArtifact  | | DataTransformationArtifact|    | ModelTrainerArtifact       |
 +---------------------+  +-------------------------+ +-------------------------+     +----------------------------+
 
+```
+
+
+## Sequence Diagram
+
+
+```
+
+User              TrainingPipeline         ConfigurationManager        DataIngestion      DataValidation     DataTransformation     ModelTrainer     ModelEvaluation     ModelPusher
+ |                        |                         |                          |                   |                       |                  |                   | 
+ |-- run_pipeline() ----->|                         |                          |                   |                       |                  |                   |
+ |                        |-- load config.yaml ---->|                          |                   |                       |                  |                   |
+ |                        |                         |---> data_ingestion_config                     |                       |                  |                   |
+ |                        |                         |---> data_validation_config                    |                       |                  |                   |
+ |                        |                         |---> data_transformation_config                |                       |                  |                   |
+ |                        |                         |---> model_trainer_config                      |                       |                  |                   |
+ |                        |                         |---> model_evaluation_config                   |                       |                  |                   |
+ |                        |                         |---> model_pusher_config                       |                       |                  |                   |
+ |                        |------------------------>|                          |                   |                       |                  |                   |
+ |                        |                         |-- init ingestion config-->|                   |                       |                  |                   |
+ |                        |                         |                          |-- download data -->|                       |                  |                   |
+ |                        |                         |                          |-- return artifact--|                       |                  |                   |
+ |                        |----------------------------->|                     |-- validate schema -->|                       |                  |                   |
+ |                        |                               |                   |-- return artifact---|                       |                  |                   |
+ |                        |--------------------------------------->|           |-- transform data --->|                       |                  |                   |
+ |                        |                                       |           |-- return artifact-----|                       |                  |                   |
+ |                        |--------------------------------------------------->|                     |-- train model ------->|                  |                   |
+ |                        |                                                  |                     |-- return artifact------|                  |                   |
+ |                        |----------------------------------------------------------------------->|                     |-- evaluate model ->|                   |
+ |                        |                                                                      |                     |-- return artifact---|                   |
+ |                        |--------------------------------------------------------------------------------------------------->| push model ------>|
+ |                        |                                                                                                  |-- return artifact--|
+ |<---------------------- done                                                                                                               
+
+
+```
 
