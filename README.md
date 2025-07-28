@@ -6,28 +6,28 @@ This project is modular, reproducible, scalable, and production-ready. It follow
 
 ---
 
-### to start the app , write the below command 
+### To start the app, write the commands below
 
-#### 1.set the venv
+#### 1. Set the virtual environment
 **python -m venv myvenv**
 
-#### 2.activate the virtual environment
+#### 2. Activate the virtual environment
 **source myvenv/Scripts/activate**
 
-#### 3.install the dependencies
+#### 3. Install the dependencies
 **pip install -r requirements.txt**
 
-#### 4.set up your file system locations
--set **.env file**
--set **Network_Security/training_pipeline/__init__.py** taking inspiration from the example.py file
+#### 4. Set up your file system locations
+- Set up **.env** file  
+- Set up **Network_Security/training_pipeline/__init__.py** taking inspiration from the example.py file
 
-5(a).run the **app.py** file
-```
-uvicorn app:app 
+#### 5(a). Run the **app.py** file
+```bash
+uvicorn app:app
 ```
 
 5(b).in case of ***developement phase** and want to run the program
-```
+```bash
 uvicorn app:app --reload
 ```
 
