@@ -34,7 +34,10 @@ uvicorn app:app --reload
 ---
 
 ## 📁 Project Structure
-##### to create the tree of the project run command - python create_tree.py
+##### to create the tree of the project run command -
+```bash
+python create_tree.py
+```
 
 ```
 
