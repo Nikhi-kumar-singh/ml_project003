@@ -1,85 +1,56 @@
 # 🧠 ML Project 003 - End-to-End Machine Learning Pipeline
 
-An end-to-end machine learning project with a production-grade pipeline designed for training, evaluating, and deploying scalable ML models. This project is modular, reproducible, and aligned with best MLOps practices.
+This repository contains a complete **End-to-End Machine Learning Pipeline** project that automates the ML lifecycle, including data ingestion, validation, transformation, model training, evaluation, and deployment.
+
+This project is modular, reproducible, scalable, and production-ready. It follows the best MLOps practices and is designed to be extended for various network security use-cases.
 
 ---
 
 ## 📁 Project Structure
-# to create the project structure
-# run command - python create_tree.py
 
+```bash
 ml_project003/
-├── Dockerfile
-├── Network_Data
-│   ├── __init__.py
-│   ├── cluster_data.txt
-│   ├── get_local_data.py
-│   ├── get_remote_data.py
-│   ├── phisingData.csv
-│   ├── push_data.py
-│   └── test_mongo.py
-├── Network_Security
-│   ├── __init__.py
-│   ├── cloud
-│   │   ├── __init__.py
-│   │   └── s3_syncer.py
-│   ├── components
-│   │   ├── __init__.py
+├── Dockerfile                        # Docker configuration for containerization
+├── Network_Data/                     # Scripts related to data collection and ingestion
+│   ├── cluster_data.txt              # Sample cluster data
+│   ├── get_local_data.py             # Load local dataset
+│   ├── get_remote_data.py            # Load dataset from remote
+│   ├── phisingData.csv               # CSV data file
+│   ├── push_data.py                  # Push data to database
+│   └── test_mongo.py                 # MongoDB test connection
+├── Network_Security/                 # Core package
+│   ├── cloud/                        # Cloud storage interface
+│   │   └── s3_syncer.py              # AWS S3 syncing script
+│   ├── components/                   # Pipeline components
 │   │   ├── data_ingestion.py
 │   │   ├── data_transformation.py
 │   │   ├── data_validation.py
 │   │   └── model_trainer.py
-│   ├── constants
-│   │   ├── __init__.py
-│   │   └── training_pipeline
-│   │       ├── __init__.py
-│   ├── entity
-│   │   ├── __init__.py
-│   │   ├── artifact_entity.py
-│   │   └── config_entity.py
-│   ├── exception
-│   │   ├── __init__.py
-│   │   └── exception.py
-│   ├── logger
-│   │   ├── __init__.py
-│   │   └── logger.py
-│   ├── pipeline
-│   │   ├── __init__.py
-│   │   ├── batch_prediction.py
-│   │   └── training_pipeline.py
-│   └── utils
-│       ├── main_utils
-│       │   ├── __init__.py
-│       │   └── utils.py
-│       └── ml_utils
-│           ├── __init__.py
-│           ├── metric
-│           └── model
-├── Network_Security.egg-info
-│   ├── PKG-INFO
-│   ├── SOURCES.txt
-│   ├── dependency_links.txt
-│   ├── requires.txt
-│   └── top_level.txt
-├── README.md
-├── app.py
-├── create_tree.py
-├── data_schema
-│   └── schema.yaml
-├── final_model
+│   ├── constants/                    # Configuration constants
+│   ├── entity/                       # Entity definitions for config/artifact
+│   ├── exception/                    # Custom exception handling
+│   ├── logger/                       # Logging utilities
+│   ├── pipeline/                     # Pipeline entry scripts
+│   │   ├── training_pipeline.py
+│   │   └── batch_prediction.py
+│   └── utils/                        # Utility functions
+│       ├── main_utils/
+│       └── ml_utils/
+├── final_model/                      # Final trained model artifacts
 │   ├── model.pkl
 │   └── preprocessor.pkl
-├── installed_packages.txt
-├── instructions.txt
-├── main.py
-├── notebooks
-│   └── __init__.py
-├── requirements.txt
-├── setup.py
-├── templates
-│   └── table.html
-└── valid_data
-    ├── input.csv
-    └── output.csv
-                 # Generated artifacts (output files)
-
+├── data_schema/                      # Input schema
+│   └── schema.yaml
+├── valid_data/                       # Sample valid test data
+│   ├── input.csv
+│   └── output.csv
+├── installed_packages.txt            # Conda or pip list snapshot
+├── create_tree.py                    # Script to create folder structure
+├── app.py                            # Flask API for model prediction
+├── main.py                           # Main script to run pipeline
+├── requirements.txt                  # Python dependencies
+├── setup.py                          # Project packaging
+├── README.md                         # This documentation
+├── instructions.txt                  # Developer instructions
+└── templates/
+    └── table.html                    # HTML template for API response
