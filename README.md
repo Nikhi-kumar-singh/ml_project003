@@ -112,7 +112,7 @@ ml_project003/
 User              TrainingPipeline         ConfigurationManager        DataIngestion      DataValidation     DataTransformation     ModelTrainer     ModelEvaluation     ModelPusher
  |                        |                         |                          |                   |                       |                  |                   | 
  |-- run_pipeline() ----->|                         |                          |                   |                       |                  |                   |
- |                        |-- load config.yaml ---->|                          |                   |                       |                  |                   |
+ |                        |--load configurations -->|                          |                   |                       |                  |                   |
  |                        |                         |---> data_ingestion_config                     |                       |                  |                   |
  |                        |                         |---> data_validation_config                    |                       |                  |                   |
  |                        |                         |---> data_transformation_config                |                       |                  |                   |
