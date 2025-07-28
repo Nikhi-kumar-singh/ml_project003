@@ -10,10 +10,13 @@ source myvenv/Scripts/activate
 3.install the dependencies
 pip install -r requirements.txt
 
+4.set up your file system locations
+-set .env file
+-set Network_Security/training_pipeline/__init__.py taking inspiration from the example.py file
 
-4.run the app.py file
+5(a).run the app.py file
 uvicorn app:app 
 
-5.in case of developement phase and want to run the program
+5(b).in case of developement phase and want to run the program
 uvicorn app:app --reload
 
