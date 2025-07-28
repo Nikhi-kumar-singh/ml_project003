@@ -167,8 +167,8 @@ User              TrainingPipeline         ConfigurationManager        DataInges
 
 
 ```
-
+## Author
 - Name: Nikhil Kumar  
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/nikhil-kumar-5b1072293/)  
+- LinkedIn: [Author linkedin profile](https://www.linkedin.com/in/nikhil-kumar-5b1072293/)  
 - Email: nikhilkumarsingh5872@gmail.com
 
