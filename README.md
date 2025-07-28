@@ -7,6 +7,7 @@ This project is modular, reproducible, scalable, and production-ready. It follow
 ---
 
 ## 📁 Project Structure
+##### to create the tree of the project run command - python create_tree.py
 
 ```bash
 ml_project003/
@@ -54,3 +55,13 @@ ml_project003/
 ├── instructions.txt                  # Developer instructions
 └── templates/
     └── table.html                    # HTML template for API response
+
+
+
+---
+
+## project 📊 Class Diagram
+
+<pre> ```text +----------------------------+ | main.py | |----------------------------| | - Triggers the pipeline | +-------------+--------------+ | v +-------------+--------------+ | TrainingPipeline | |----------------------------| | - start_data_ingestion() | | - start_data_validation() | | - start_data_transformation() | | - start_model_trainer() | +-------------+--------------+ | +------------------+--------------+---------------------+------------------+ | | | | | v v v v +----------------+ +----------------------+ +----------------------+ +-----------------------+ | DataIngestion | | DataValidation | | DataTransformation | | ModelTrainer | |----------------| |----------------------| |----------------------| |------------------------| | +__init__() | | +__init__() | | +__init__() | | +__init__() | | +initiate() | | +validate() | | +transform() | | +train() | +-------+--------+ +----------+-----------+ +----------+-----------+ +-----------+-----------+ | | | | v v v v +---------------------+ +------------------------+ +------------------------+ +----------------------------+ | DataIngestionConfig | | DataValidationConfig | | DataTransformationConfig| | ModelTrainerConfig | +---------------------+ +------------------------+ +------------------------+ +----------------------------+ | | | | v v v v +------------------------+ +-------------------------+ +-------------------------+ +----------------------------+ | DataIngestionArtifact | | DataValidationArtifact | | DataTransformationArtifact| | ModelTrainerArtifact | +------------------------+ +-------------------------+ +-------------------------+ +----------------------------+ ``` </pre>
+
+
