@@ -9,7 +9,8 @@ This project is modular, reproducible, scalable, and production-ready. It follow
 ## 📁 Project Structure
 ##### to create the tree of the project run command - python create_tree.py
 
-```bash
+```
+
 ml_project003/
 ├── Dockerfile                        # Docker configuration for containerization
 ├── Network_Data/                     # Scripts related to data collection and ingestion
@@ -56,7 +57,7 @@ ml_project003/
 └── templates/
     └── table.html                    # HTML template for API response
 
-
+```
 
 ---
 
