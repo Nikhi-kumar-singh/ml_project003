@@ -9,6 +9,10 @@ PIPELINE_NAME="Network_Security"
 ARTIFACT_DIR="Artifacts"
 FILE_NAME="phisingData.csv"
 
+SAVE_MODEL_DIR=os.path.join("saved_models")
+MODEL_FILE_NAME="model.pkl"  
+
+TRAINING_BUCKET_NAME="Network_Security"
 
 TRAIN_FILE_NAME="train.csv"
 TEST_FILE_NAME="test.csv"
@@ -53,5 +57,3 @@ MODEL_TRAINER_EXPECTED_SCORE:float =0.6
 MODEL_TRAINER_OVERFITTING_UNDERFITTING_THRESHOLD:float =0.05
 
 
-SAVE_MODEL_DIR=os.path.join("saved_models")
-MODEL_FILE_NAME="model.pkl"  
